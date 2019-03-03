@@ -1,8 +1,10 @@
 const express = require('express');
 const ejsLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 const passport = require('./config/passportConfig');
 const session = require('express-session');
+const request = require('request');
 const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
 const helmet = require('helmet');
@@ -18,6 +20,8 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(helmet());
+app.use(express.static('public')); // tells renderer where static files live
+app.use(methodOverride('_method'));
 
 // create a session store
 const sessionStore = new SequelizeStore({
@@ -52,15 +56,17 @@ app.use(function(req, res, next) {
   next();
 });
 
+// GET / takes you to main screen with login options
 app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/profile', isLoggedIn, function(req, res) {
-  res.render('profile');
-});
 
 app.use('/auth', require('./controllers/auth'));
+app.use('/genres', require('./controllers/genres'));
+app.use('/main', require('./controllers/main'));
+app.use('/mybooks', require('./controllers/mybooks'));
+app.use('/search', require('./controllers/search'));
 
 const server = app.listen(port, function() {
   console.log(`spinning on ${port}`)

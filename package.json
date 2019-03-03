@@ -10,7 +10,7 @@
     "start": "nodemon server.js",
     "test": "NODE_ENV=test node_modules/mocha/bin/mocha"
   },
-  "author": "",
+  "author": "Owen R. James",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^3.0.4",
@@ -22,15 +22,25 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
     "helmet": "^3.15.1",
+    "method-override": "^3.0.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.8.1",
+    "request": "^2.88.0",
     "sequelize": "^4.42.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.0.2",
     "supertest": "^3.4.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orjames/nextbook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/orjames/nextbook/issues"
+  },
+  "homepage": "https://github.com/orjames/nextbook#readme"
 }
