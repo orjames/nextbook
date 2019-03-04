@@ -1,0 +1,11 @@
+<h1>Search Results</h1>
+
+<% googleBooks.forEach(function(book, index) { %>
+  <div class="container">
+    <h2>
+      <a href="#"><%= book.volumeInfo.title %></a>
+      <small>by <%= book.volumeInfo.authors[0] %></small>
+    </h2>
+  </div>
+<% }); %>
+
