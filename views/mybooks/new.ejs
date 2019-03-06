@@ -1,33 +1,80 @@
-<h1>Rate & Review</h1>
-<h2>Add to My Books</h2>
-
-<form action="/projects" method="POST">
-  <div class="form-group">
-    <label for="name">Book Name</label>
-    <input type="text" class="form-control" id="name" name="name" required>
-  </div>
-
-  <div class="form-group">
-    <label for="githubLink">Rating</label>
-    <input type="text" class="form-control" id="githubLink" name="githubLink" required>
-  </div>
-
-  <div class="form-group">
-    <label for="deployedLink">Review</label>
-    <input type="text" class="form-control" id="deployedLink" name="deployedLink" required>
-  </div>
-
-  <div class="form-group">
-    <label for="description">Description</label>
-    <textarea type="text" class="form-control" id="description" name="description" required></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="category">Category</label>
-    <textarea type="text" class="form-control" id="category" name="category" required></textarea>
-  </div>
-
-
+<h1 class="card-header text-center"><i class="far fa-thumbs-up"></i> Rate and Review</h1>
+<h1 class="card-header text-center"><i class="far fa-plus-square"></i></i> Add to mybooks</h1>
   
-  <input type="submit" class="btn btn-primary">
+<form action="/mybooks" method="POST" class='justify-content-center'>
+  <input hidden type="text" name="book_link" value="<%= book.bookLink %>">
+  <input hidden type="text" name="title" value="<%= book.title %>">
+  <input hidden type="text" name="author" value="<%= book.author %>">
+  <input hidden type="text" name="isbn" value="<%= book.isbn %>">
+  <input hidden type="text" name="genre" value="<%= book.category %>"> 
+    <div class="card text-white bg-dark mb-3 justify-content-center" style="width: 40rem;">
+      <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+      <a hidden id='book_link' href='<%= book.bookLink %>'><%= book.bookLink %></a>
+      <a href=""></a>
+      <div class="card-body text-white bg-dark">
+        <h5 class="card-title" id='title'><%= book.title %><small> by 
+          <span id='author'>
+            <%= book.author %>
+          </span> 
+          (<span id='year'><%= book.publicationYear %></span>)</small></h5>
+        <p class="card-text" id='description'><%= book.description %></p>
+      </div>
+      <ul class="list-group list-group-flush text-white bg-dark">
+        <li class="list-group-item text-white bg-dark">Average Rating: <span id='google_rating'><%= book.averageRating %></span>
+          • <span id='numRatings'><%= book.ratingsCount %></span> ratings</li>
+        <li class="list-group-item text-white bg-dark">
+        Genres:
+        <span id='genre'>
+            <%= book.category %>
+        </span>
+        </li>
+        <li class="list-group-item text-white bg-dark">price: $<span id='price'><%= book.price %></span> • <a href="<%= book.previewLink %>" id='previewLink'>preview</a></li>
+        <li class="list-group-item text-white bg-dark">ISBN: <span id='isbn'><%= book.isbn %></span></li>
+        <li class="list-group-item text-white bg-dark">
+          <div class="input-group mb-3 text-white bg-dark">
+            <div class="input-group-prepend text-white bg-dark">
+              <label class="input-group-text" for="inputGroupSelect01">Rating</label>
+            </div>
+            <select class="custom-select text-white bg-dark" id="rating" name="rating" required>
+              <option selected>Choose...</option>
+              <option value="0">0</option>
+              <option value="0.5">0.5</option>
+              <option value="1">1.0<i class="fas fa-star"></i></option>
+              <option value="1.5">1.5</option>
+              <option value="2">2.0</option>
+              <option value="2.5">2.5</option>
+              <option value="3">3.0</option>
+              <option value="3.5">3.5</option>
+              <option value="4">4.0</option>
+              <option value="4.5">4.5</option>
+              <option value="5">5.0</option>
+            </select>
+          </div>
+            <i class="fas fa-star-half"></i><br>
+            <i class="fas fa-star"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
+        </li>
+        <li class="list-group-item text-white bg-dark">
+          <div class="input-group text-white bg-dark">
+            <div class="input-group-prepend text-white bg-dark">
+              <span class="input-group-text text-white bg-dark">Review:</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" id="review" name="review" required></textarea>
+          </div>
+        </li>
+        <li class="list-group-item text-white bg-dark mb-5">
+          <button class="btn btn-primary" type="submit">Add to mybooks</button>
+        </li>
+        
+      </ul>
+      
+    </div>
+
 </form>

@@ -18,7 +18,7 @@ function showInputField() {
   } else if (selector.value === 'author') {
     document.getElementById('inputBox').placeholder = 'Author...';
   } else if (selector.value === 'category') {
-    document.getElementById('inputBox').placeholder = 'Category...';
+    document.getElementById('inputBox').placeholder = 'Genre/Category...';
   } else {
     console.log('error')
   }

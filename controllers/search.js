@@ -11,13 +11,12 @@ const xmlToJSON = require('xmltojson');
 xmlToJSON.stringToXML = (string) => new DOMParser().parseFromString(string, 'text/xml');
 
 // GET /search/new
-router.get('/new', isLoggedIn, function(req, res) {
+router.get('/new/', isLoggedIn, function(req, res) {
   res.render('search/new');
 });
 
 // POST /search/show takes you to main page of app calls isLoggedIn middleware
 router.get('/', isLoggedIn, function(req, res) {
-  console.log('your req query is', req.query)
   if (req.query.name) {
     let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle:${req.query.name}&printType=books` 
     let goodreadsUrl = `https://www.goodreads.com/search.xml?key=JtQuDTA0kMEyRYfz91eVQ&q=${req.query.name}`
@@ -31,14 +30,14 @@ router.get('/', isLoggedIn, function(req, res) {
         googleBooks[index] = {
           bookLink: (book.selfLink) ? book.selfLink : 'no link',
           title: (book.volumeInfo.title) ? book.volumeInfo.title : 'no title',
-          author: (book.volumeInfo.authors) ? book.volumeInfo.authors : 'no author',
-          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate : 'no publication',
+          author: (book.volumeInfo.authors) ? book.volumeInfo.authors.join(' ') : 'no author',
+          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
-          ISBN13: (book.volumeInfo.industryIdentifiers[0].industryIdentifier) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no ISBN13',
+          isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'no isbn',
           averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
           ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
-          category: (book.volumeInfo.categories) ? book.volumeInfo.categories : 'no category',
-          imageUrl: (book.volumeInfo.imageLinks.thumbnail) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
+          category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
+          imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
@@ -57,8 +56,8 @@ router.get('/', isLoggedIn, function(req, res) {
             imageUrl: book.best_book[0].image_url[0]._text
           }
         });
-        res.render('main/index', {googleBooks: googleBooks, amazonBooks: amazonBooks});
-        // res.json(googleBooks);
+        res.render('search/show', {googleBooks: googleBooks, amazonBooks: amazonBooks});
+        // res.JSON(googleBooks);
       })
     });
   } else if (req.query.author) {
@@ -73,14 +72,14 @@ router.get('/', isLoggedIn, function(req, res) {
         googleBooks[index] = {
           bookLink: (book.selfLink) ? book.selfLink : 'no link',
           title: (book.volumeInfo.title) ? book.volumeInfo.title : 'no title',
-          author: (book.volumeInfo.authors) ? book.volumeInfo.authors : 'no author',
-          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate : 'no publication',
+          author: (book.volumeInfo.authors) ? book.volumeInfo.authors.join(' ') : 'no author',
+          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
-          ISBN13: (book.volumeInfo.industryIdentifiers[0].industryIdentifier) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no ISBN13',
+          isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no isbn',
           averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
           ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
-          category: (book.volumeInfo.categories) ? book.volumeInfo.categories : 'no category',
-          imageUrl: (book.volumeInfo.imageLinks.thumbnail) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
+          category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
+          imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
@@ -99,7 +98,7 @@ router.get('/', isLoggedIn, function(req, res) {
             imageUrl: book.best_book[0].image_url[0]._text
           }
         });
-        res.render('main/index', {googleBooks: googleBooks, amazonBooks: amazonBooks});
+        res.render('search/show', {googleBooks: googleBooks, amazonBooks: amazonBooks});
         // res.json(googleBooks);
       })
     });
@@ -115,14 +114,14 @@ router.get('/', isLoggedIn, function(req, res) {
         googleBooks[index] = {
           bookLink: (book.selfLink) ? book.selfLink : 'no link',
           title: (book.volumeInfo.title) ? book.volumeInfo.title : 'no title',
-          author: (book.volumeInfo.authors) ? book.volumeInfo.authors : 'no author',
-          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate : 'no publication',
+          author: (book.volumeInfo.authors) ? book.volumeInfo.authors.join(' ') : 'no author',
+          publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
-          ISBN13: (book.volumeInfo.industryIdentifiers[0].industryIdentifier) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no ISBN13',
+          isbn: (book.volumeInfo.industryIdentifiers[0]) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no isbn',
           averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
           ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
-          category: (book.volumeInfo.categories) ? book.volumeInfo.categories : 'no category',
-          imageUrl: (book.volumeInfo.imageLinks.thumbnail) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
+          category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
+          imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
@@ -141,7 +140,7 @@ router.get('/', isLoggedIn, function(req, res) {
             imageUrl: book.best_book[0].image_url[0]._text
           }
         });
-        res.render('main/index', {googleBooks: googleBooks, amazonBooks: amazonBooks});
+        res.render('search/show', {googleBooks: googleBooks, amazonBooks: amazonBooks});
         // res.json(googleBooks);
       })
     });
