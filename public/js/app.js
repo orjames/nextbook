@@ -4,11 +4,8 @@ var selector
 document.addEventListener('DOMContentLoaded', function() {
 selector = document.getElementById('inputGroupSelect01')
 var inputDiv = document.getElementById('inputDiv');
-
 inputDiv.style.display = 'none';
-
 document.getElementById('inputBox').value = '';
-
 selector.addEventListener('change', showInputField)
 });
 

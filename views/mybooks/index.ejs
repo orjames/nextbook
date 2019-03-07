@@ -1,10 +1,20 @@
-<h1 class="card-header"><i class="fas fa-book-open"></i> My Books</h1>
+<h1 class="card-header text-center"><i class="fas fa-book-open"></i> My Books</h1>
 
 <% books.forEach(function(book, index) { %>
-  <div class="well">
-    <h2>
-      <a href="#"><%= book.title %></a>
-      <small>by <%= book.author %></small>
-    </h2>
+
+  <div class="card text-white bg-dark mb-5 mx-auto">
+    <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+    
+    <div class="card-body text-white bg-dark">
+      <h2>
+          <a href="#"><%= book.title %></a>
+          <small>by <%= book.author %></small>
+      </h2>
+    </div>
+    <form method="POST" action="/mybooks/:isbn?_method=DELETE">
+      <input hidden type="text" name='isbn' value="<%= book.isbn %>">
+        <button type="submit" class="text-white bg-dark ml-3"><i class="far fa-trash-alt"></i></button>
+    </form>
   </div>
-  <% }); %>
+
+<% }); %>

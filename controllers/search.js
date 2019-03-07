@@ -4,6 +4,8 @@ const db = require('../models');
 const passport = require('../config/passportConfig')
 const isLoggedIn = require('../middleware/isLoggedIn');
 const request = require('request');
+require('dotenv').config(); // reads our .env file, saves into process.env.(name of variable)
+const goodreadsKey = process.env.GOODREADS_KEY;
 
 // for goodreads API which is XML, using JS module to convert XML into JSON
 const { DOMParser } = require('xmldom');
@@ -19,9 +21,8 @@ router.get('/new/', isLoggedIn, function(req, res) {
 router.get('/', isLoggedIn, function(req, res) {
   if (req.query.name) {
     let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=intitle:${req.query.name}&printType=books` 
-    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=JtQuDTA0kMEyRYfz91eVQ&q=${req.query.name}`
-    console.log('your amazon url is ', goodreadsUrl);
-    console.log('your google url is ', googlebooksUrl);
+    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.query.name}`
+    console.log('your google url is..............:):)........', googlebooksUrl)
     // Use request to call the API
     request(googlebooksUrl, function(error, response, body) {
       var googleBooksOriginal = JSON.parse(body).items;
@@ -34,14 +35,22 @@ router.get('/', isLoggedIn, function(req, res) {
           publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
           isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'no isbn',
-          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
-          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
+          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no ratings',
+          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 0,
           category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
           imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
       })
+      function compare(a, b) {
+        if (a.ratingsCount > b.ratingsCount)
+          return -1;
+        if (a.ratingsCount < b.ratingsCount)
+          return 1;
+        return 0;
+        }
+      googleBooks.sort(compare);
       request(goodreadsUrl, function(error, response, body) {
         var amazonBooksOriginal = xmlToJSON.parseString(body).GoodreadsResponse[0].search[0].results[0].work;
         var amazonBooks = [];
@@ -57,13 +66,13 @@ router.get('/', isLoggedIn, function(req, res) {
           }
         });
         res.render('search/show', {googleBooks: googleBooks, amazonBooks: amazonBooks});
-        // res.JSON(googleBooks);
+        // res.json(googleBooks);
       })
     });
   } else if (req.query.author) {
     let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${req.query.author}&printType=books` 
-    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=JtQuDTA0kMEyRYfz91eVQ&q=${req.query.author}`
-    console.log('your amazon url is ', goodreadsUrl);
+    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.query.author}`
+    console.log('your google url is ', googlebooksUrl);
     // Use request to call the API
     request(googlebooksUrl, function(error, response, body) {
       var googleBooksOriginal = JSON.parse(body).items;
@@ -75,15 +84,23 @@ router.get('/', isLoggedIn, function(req, res) {
           author: (book.volumeInfo.authors) ? book.volumeInfo.authors.join(' ') : 'no author',
           publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
-          isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no isbn',
-          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
-          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
+          isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'no isbn',
+          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no ratings',
+          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 0,
           category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
           imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
       })
+      function compare(a, b) {
+        if (a.ratingsCount > b.ratingsCount)
+          return -1;
+        if (a.ratingsCount < b.ratingsCount)
+          return 1;
+        return 0;
+        }
+      googleBooks.sort(compare);
       request(goodreadsUrl, function(error, response, body) {
         var amazonBooksOriginal = xmlToJSON.parseString(body).GoodreadsResponse[0].search[0].results[0].work;
         var amazonBooks = [];
@@ -104,7 +121,7 @@ router.get('/', isLoggedIn, function(req, res) {
     });
   } else if (req.query.category) {
     let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=subject:${req.query.category}&printType=books` 
-    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=JtQuDTA0kMEyRYfz91eVQ&q=${req.query.category}`
+    let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.query.category}`
     console.log('your amazon url is ', goodreadsUrl);
     // Use request to call the API
     request(googlebooksUrl, function(error, response, body) {
@@ -117,15 +134,23 @@ router.get('/', isLoggedIn, function(req, res) {
           author: (book.volumeInfo.authors) ? book.volumeInfo.authors.join(' ') : 'no author',
           publicationYear: (book.volumeInfo.publishedDate) ? book.volumeInfo.publishedDate.split('-')[0] : 'no publication',
           description: (book.volumeInfo.description) ? book.volumeInfo.description : 'no description',
-          isbn: (book.volumeInfo.industryIdentifiers[0]) ? book.volumeInfo.industryIdentifiers[0].industryIdentifier : 'no isbn',
-          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no',
-          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 'no',
+          isbn: (book.volumeInfo.industryIdentifiers) ? book.volumeInfo.industryIdentifiers[0].identifier : 'no isbn',
+          averageRating: (book.volumeInfo.averageRating) ? book.volumeInfo.averageRating : 'no ratings',
+          ratingsCount: (book.volumeInfo.ratingsCount) ? book.volumeInfo.ratingsCount : 0,
           category: (book.volumeInfo.categories) ? book.volumeInfo.categories.join(' ') : 'no category',
           imageUrl: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : 'no image url',
           previewLink: (book.volumeInfo.previewLink) ? book.volumeInfo.previewLink : 'no preview link',
           price: (book.saleInfo.retailPrice) ? book.saleInfo.retailPrice.amount : 'not for sale'
         }
       })
+      function compare(a, b) {
+        if (a.ratingsCount > b.ratingsCount)
+          return -1;
+        if (a.ratingsCount < b.ratingsCount)
+          return 1;
+        return 0;
+        }
+      googleBooks.sort(compare);
       request(goodreadsUrl, function(error, response, body) {
         var amazonBooksOriginal = xmlToJSON.parseString(body).GoodreadsResponse[0].search[0].results[0].work;
         var amazonBooks = [];

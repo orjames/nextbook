@@ -7,6 +7,7 @@ const session = require('express-session');
 const request = require('request');
 const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
+const loginPage = require('./middleware/loginPage');
 const helmet = require('helmet');
 require('dotenv').config(); // reads our .env file, saves into process.env.(name of variable)
 const port = process.env.PORT || 3001;
@@ -17,8 +18,10 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(require('morgan')('dev'));
+app.use(bodyParser.json()); // allows sending of JSON data as part of req.body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
+app.set('layout extractScripts', true)
 app.use(helmet());
 app.use(express.static('public')); // tells renderer where static files live
 app.use(methodOverride('_method'));
@@ -57,7 +60,7 @@ app.use(function(req, res, next) {
 });
 
 // GET / takes you to main screen with login options
-app.get('/', function(req, res) {
+app.get('/', loginPage, function(req, res) {
   res.render('index');
 });
 

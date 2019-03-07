@@ -1,0 +1,34 @@
+/* colors:
+green: rgb(153, 226, 101);
+white: rgb(255, 255, 255);
+off-white: 
+blue: rgb(50, 90, 123);
+*/
+
+i, .white {
+  color: rgb(255, 255, 255);
+}
+
+h1, a, .green {
+  color: rgb(153, 226, 101);
+}
+
+.offWhite {
+  color: rgb(180, 175, 175)
+}
+
+.blue {
+  color: rgb(50, 90, 123);
+}
+
+/* button {
+  border-color: rgb(0,0,0);
+} */
+
+.badge {
+  font-size: 1rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  margin: 0.2rem 0.1rem;
+  font-weight: 300;
+}

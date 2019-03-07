@@ -1,5 +1,5 @@
-<h1 class="card-header text-center"><i class="far fa-thumbs-up"></i> Rate and Review</h1>
-<h1 class="card-header text-center"><i class="far fa-plus-square"></i></i> Add to mybooks</h1>
+<h1 class="card-header text-center"><i class="far fa-thumbs-up"></i> Rate and Review<br>
+<i class="far fa-plus-square"></i></i> Add to mybooks</h1>
   
 <form action="/mybooks" method="POST" class='justify-content-center'>
   <input hidden type="text" name="book_link" value="<%= book.bookLink %>">
@@ -7,7 +7,7 @@
   <input hidden type="text" name="author" value="<%= book.author %>">
   <input hidden type="text" name="isbn" value="<%= book.isbn %>">
   <input hidden type="text" name="genre" value="<%= book.category %>"> 
-    <div class="card text-white bg-dark mb-3 justify-content-center" style="width: 40rem;">
+    <div class="card text-white bg-dark mb-3 mx-auto">
       <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
       <a hidden id='book_link' href='<%= book.bookLink %>'><%= book.bookLink %></a>
       <a href=""></a>
@@ -36,7 +36,7 @@
               <label class="input-group-text" for="inputGroupSelect01">Rating</label>
             </div>
             <select class="custom-select text-white bg-dark" id="rating" name="rating" required>
-              <option selected>Choose...</option>
+              <option selected disabled>Choose...</option>
               <option value="0">0</option>
               <option value="0.5">0.5</option>
               <option value="1">1.0<i class="fas fa-star"></i></option>
@@ -70,7 +70,7 @@
           </div>
         </li>
         <li class="list-group-item text-white bg-dark mb-5">
-          <button class="btn btn-primary" type="submit">Add to mybooks</button>
+          <button class="btn btn-primary text-white bg-dark" href='/mybooks' type="submit"><i class="far fa-plus-square"></i></i> <span class='green'>Add to mybooks</span></button>
         </li>
         
       </ul>

@@ -1,10 +1,41 @@
-<h1 class="card-header text-center"><i class="fas fa-cogs"></i> My Genres</h1>
+<div class='card-header text-center'>
+<h1><i class="fas fa-cogs"></i> <%= user.dataValues.name %>'s Genres</h1>
+<h5 class="offWhite">Genres Help Us Determine Which Books to Recommend</h5>
+</div>
 
-(squid) books.forEach(function(book, index) { (squid)
-  <div class="well">
-    <h2>
-      <a href="#">(squid=) book[index].name (squid)</a>
-      <small>by (squid=) book[index].author (squid)</small>
-    </h2>
+<div class="card text-white bg-dark">
+  <div class="card-body text-white bg-dark">
+      <h3 class="text-center green">Selected Genres</h3>
+    <p class="text-justify">
+      <% genreNames.forEach(function(genre, index) { %>
+      
+      <form method="POST" action="/genres/:genre?_method=DELETE">
+      <input hidden type="text" name="genre" value="<%= genre %>">
+        <span class="badge badge-success myGenre"><i class="fas fa-minus mr-2"></i><%= genre %><button type="submit" class="badge badge-success ml-3"><i class="far fa-trash-alt"></i></button></span>
+      </form>
+
+      <% }); %>
+    </p>
   </div>
-  (squid) }); (squid)
+</div>
+
+
+
+<div class="card text-white bg-dark mb-5">
+    <div class="card-body text-white bg-dark">
+      <h3 class="text-center green">Select From Genres</h3>
+      <p class="text-justify">
+
+      <% var genresAry = ["Science Fiction", "Art", "Biography", "Business", "Chick Lit", "Children's", "Christian", "Classics", "Comics", "Contemporary", "Cookbooks", "Crime", "Ebooks", "Fantasy", "Fiction", "Gay and Lesbian", "Graphic Novels", "Historical Fiction", "History", "Horror", "Humor and Comedy", "Manga", "Memoir", "Music", "Mystery", "Nonfiction", "Paranormal", "Philosophy", "Poetry", "Psychology", "Religion", "Romance", "Science", "Self Help", "Suspense", "Spirituality", "Sports", "Thriller", "Travel", "Young Adult"] %>
+      <% genresAry.forEach(function(genre, index) { %>
+        <% if (!genreNames.includes(genre)) { %>
+          <span class="badge badge-secondary genre"><i class="fas fa-plus mr-2"></i><%=genre %></span>
+        <% } %>
+      <% }); %>
+      
+
+      </p>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="/js/genres.js"></script>
