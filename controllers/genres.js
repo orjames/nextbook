@@ -43,17 +43,6 @@ router.post('/', isLoggedIn, function(req, res) {
   })
 })
 
-// app.put('/profile', upload.single('myFile'), function(req, res) {
-//   cloudinary.uploader.upload(req.file.path, function(result) {
-//     db.photo.update({
-//       link: result.url
-//       }, {where: {userId: req.user.id}}
-//     ).then(function(photo, created) {
-//         res.redirect('/profile');
-//     });
-//   });
-// });
-
 // DELETE /genres - delete a genre from genres index
 router.delete('/:genre', isLoggedIn, function(req, res) {
   db.user.findById(parseInt(req.user.id), { include: [db.genre] }).then(function (user) {

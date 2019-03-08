@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express');;
 const router = express.Router();
 const db = require('../models');
 const passport = require('../config/passportConfig')
@@ -6,6 +6,7 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const request = require('request');
 require('dotenv').config(); // reads our .env file, saves into process.env.(name of variable)
 const goodreadsKey = process.env.GOODREADS_KEY;
+
 
 // for goodreads API which is XML, using JS module to convert XML into JSON
 const { DOMParser } = require('xmldom');
@@ -20,11 +21,10 @@ router.get('/', isLoggedIn, function(req, res) {
   .then(books => {
     res.render('mybooks', {books: books, user: req.user});
     // res.json(books);
-  })
-  .catch(function(error) {
+  }).catch(function(error) {
     res.status(500).render('main/error')
   })
-});
+})
 
 // GET /mybooks/new
 router.get('/new/:isbn', isLoggedIn, function(req, res) {
@@ -35,7 +35,7 @@ router.get('/new/:isbn', isLoggedIn, function(req, res) {
   console.log('your google url is ', googlebooksUrl);
   // Use request to call the API
   request(googlebooksUrl, function(error, response, body) {
-    var googleBooksOriginal = JSON.parse(body).items[0];
+    var googleBooksOriginal = JSON.parse(body).items ? JSON.parse(body).items[0] : 'no API for the book'
     var book = {};
     book = {
       bookLink: (googleBooksOriginal.selfLink) ? googleBooksOriginal.selfLink : 'no link',
@@ -71,9 +71,9 @@ router.get('/new/:isbn', isLoggedIn, function(req, res) {
   });
 });
 
-
 // POST /mybooks - receive the name of a book title etc of a book then add it to the books table
 router.post('/', isLoggedIn, function(req, res) {
+  console.log('your req.body is ..........................:):)', req.body);
   db.user.findById(parseInt(req.user.dataValues.id), {include: [db.review]}).then(function (user) {
     user.createBook({
         book_link: req.body.book_link,
@@ -93,8 +93,30 @@ router.post('/', isLoggedIn, function(req, res) {
   });
 });
 
+// GET /mybooks/edit takes you to a page to edit a review isLoggedIn middleware
+router.get('/:bookId/edit/', isLoggedIn, function(req, res) {
+  db.book.findAll({
+    where: {id: req.params.bookId},
+    include: [db.review]
+  })
+  .then(books => {
+    res.render('mybooks/edit', {books: books, user: req.user});
+  })
+  .catch(function(error) {
+    res.status(500).render('main/error')
+  })
+});
 
-
+// PUT /mybooks - edit a review from mybooks
+router.put('/:review', isLoggedIn, function(req, res) {
+  db.user.findById(parseInt(req.user.id), { include: [db.review, db.book] }).then(function (user) {
+    db.review.update({ text: req.body.text, rating: req.body.rating },
+      { where: { bookId: req.body.review, userId: req.user.id } }
+    ).then(function() {
+      res.redirect('/mybooks')
+    })
+  })
+})
 
 // DELETE /mybooks - delete a genre from mybooks index
 router.delete('/:isbn', isLoggedIn, function(req, res) {
@@ -109,7 +131,10 @@ router.delete('/:isbn', isLoggedIn, function(req, res) {
         where: {isbn: bodyIsbn}
       }).then(function(user) {
         db.review.destroy({
-          where: {userId: user}
+          where: {
+            userId: user,
+            bookId: books[0].userBook.bookId
+          }
         })
       }).then(function() {
         res.redirect('/mybooks')

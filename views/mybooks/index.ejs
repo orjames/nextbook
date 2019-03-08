@@ -3,18 +3,23 @@
 <% books.forEach(function(book, index) { %>
 
   <div class="card text-white bg-dark mb-5 mx-auto">
-    <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+  
+    <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
     
     <div class="card-body text-white bg-dark">
       <h2>
           <a href="#"><%= book.title %></a>
           <small>by <%= book.author %></small>
       </h2>
+          <h3>your book review: <%= book.reviews[0].text %> </h3>
+          <small>your rating is: <%= book.reviews[0].rating %></small>
     </div>
     <form method="POST" action="/mybooks/:isbn?_method=DELETE">
       <input hidden type="text" name='isbn' value="<%= book.isbn %>">
         <button type="submit" class="text-white bg-dark ml-3"><i class="far fa-trash-alt"></i></button>
     </form>
+
+      <a href='/mybooks/<%= book.id %>/edit' class="btn btn-primary text-white bg-dark ml-3 mb-5"><i class="far fa-edit"></i></a>
   </div>
 
 <% }); %>

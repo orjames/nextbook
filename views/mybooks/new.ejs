@@ -2,7 +2,7 @@
 <i class="far fa-plus-square"></i></i> Add to mybooks</h1>
   
 <form action="/mybooks" method="POST" class='justify-content-center'>
-  <input hidden type="text" name="book_link" value="<%= book.bookLink %>">
+  <input hidden type="text" name="book_link" value="<%= book.imageUrl %>">
   <input hidden type="text" name="title" value="<%= book.title %>">
   <input hidden type="text" name="author" value="<%= book.author %>">
   <input hidden type="text" name="isbn" value="<%= book.isbn %>">
@@ -33,7 +33,7 @@
         <li class="list-group-item text-white bg-dark">
           <div class="input-group mb-3 text-white bg-dark">
             <div class="input-group-prepend text-white bg-dark">
-              <label class="input-group-text" for="inputGroupSelect01">Rating</label>
+              <label class="input-group-text text-white bg-secondary" for="inputGroupSelect01">Rating</label>
             </div>
             <select class="custom-select text-white bg-dark" id="rating" name="rating" required>
               <option selected disabled>Choose...</option>
@@ -64,7 +64,7 @@
         <li class="list-group-item text-white bg-dark">
           <div class="input-group text-white bg-dark">
             <div class="input-group-prepend text-white bg-dark">
-              <span class="input-group-text text-white bg-dark">Review:</span>
+              <span class="input-group-text text-white bg-secondary">Review:</span>
             </div>
             <textarea class="form-control" aria-label="With textarea" id="review" name="review" required></textarea>
           </div>

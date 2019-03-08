@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// configure server to accept object on AJAX post route app.use(express.JSON)
-
+// AJAX to update users genres
 function addToGenres(e) {
   var genre = e.currentTarget.innerText; //event.target is the target of the event(click), or the genre that was clicked on
   e.target.style.display = 'none';

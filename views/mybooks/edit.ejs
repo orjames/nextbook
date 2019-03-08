@@ -1,0 +1,49 @@
+<h1 class="card-header text-center"><i class="far fa-edit"></i> Edit Review</h1>
+
+<% books.forEach(function(book, index) { %>
+
+  <div class="card text-white bg-dark mb-5 mx-auto">
+    <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+    
+    <div class="card-body text-white bg-dark">
+      <h2>
+          <a href="#"><%= book.title %></a>
+          <small>by <%= book.author %></small>
+      </h2>
+
+      <form method="POST" action="/mybooks/:review?_method=PUT">
+      <div class="input-group mb-3 text-white bg-dark">
+        <div class="input-group-prepend text-white bg-dark">
+          <label class="input-group-text text-white bg-secondary" for="inputGroupSelect01">Rating</label>
+        </div>
+
+        <% values = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5] %>
+        <select class="custom-select text-white bg-dark" id="rating" name="rating" required>
+          <% values.forEach(value => { %>
+            <option value='<%= value %>'
+                <% if (value === book.reviews[0].rating) { %>
+                    <%= 'selected' %>
+                <% } %>
+            ><%= value %></option>
+          <% }) %>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-group-prepend text-white bg-dark">
+          <span class="input-group-text text-white bg-secondary">Review</span>
+        </div>
+        <textarea class="form-control text-white bg-dark" name='text' aria-label="With textarea"><%= book.reviews[0].text %></textarea>
+      </div>
+    </div>
+    
+      <input hidden type="text" name='review' value="<%= book.reviews[0].bookId %>">
+      <button class="btn btn-primary text-white bg-dark" type="submit"><i class="far fa-plus-square"></i></i> <span class='green'>Submit</span></button>
+    </form>
+    
+        
+
+  </div>
+<% }) %>
+
+<script type="text/javascript" src="/js/selectedRating.js"></script>
