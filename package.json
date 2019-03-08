@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "NODE_ENV=test node_modules/mocha/bin/mocha"
   },
   "author": "Owen R. James",
