@@ -75,6 +75,7 @@ router.get('/', isLoggedIn, function(req, res) {
     async.parallel(async.reflectAll(requests), function(error, results) {
       // flatten data
       // get rid of bad data
+      // get rid of duplicate data
       let books = _.compact(_.flatten(results.map( r => r.value)))
       
       function compare(a, b) {
