@@ -13,6 +13,7 @@
   "author": "Owen R. James",
   "license": "ISC",
   "dependencies": {
+    "async": "^2.6.2",
     "bcrypt": "^3.0.4",
     "connect-flash": "^0.1.1",
     "connect-session-sequelize": "^6.0.0",
@@ -22,6 +23,7 @@
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.15.6",
     "helmet": "^3.15.1",
+    "lodash": "^4.17.11",
     "method-override": "^3.0.0",
     "morgan": "^1.9.1",
     "passport": "^0.4.0",

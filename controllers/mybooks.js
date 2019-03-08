@@ -7,7 +7,6 @@ const request = require('request');
 require('dotenv').config(); // reads our .env file, saves into process.env.(name of variable)
 const goodreadsKey = process.env.GOODREADS_KEY;
 
-
 // for goodreads API which is XML, using JS module to convert XML into JSON
 const { DOMParser } = require('xmldom');
 const xmlToJSON = require('xmltojson');
