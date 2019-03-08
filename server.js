@@ -41,7 +41,7 @@ app.use(session({ //function that takes an options object
 }));
 
 // use this line once to setup the store table
-sessionStore.sync();
+// sessionStore.sync();
 
 // this must come after the session and before passport
 app.use(flash());
