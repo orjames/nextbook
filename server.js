@@ -10,7 +10,7 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const loginPage = require('./middleware/loginPage');
 const helmet = require('helmet');
 require('dotenv').config(); // reads our .env file, saves into process.env.(name of variable)
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 const SequelizeStore = require('connect-session-sequelize')(session.Store); // passing the store into the node module so its passing it into sequelize
 const db = require('./models');
 const app = express();
