@@ -7,12 +7,8 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     
-  return queryInterface.addColumn('ratings', 'userId', Sequelize.INTEGER).then(() => {
-          queryInterface.addColumn('ratings', 'bookId', Sequelize.INTEGER)}).then(() => {
-          queryInterface.addColumn('ratings', 'reviewId', Sequelize.INTEGER)}).then(() => {
-          queryInterface.addColumn('reviews', 'userId', Sequelize.INTEGER)}).then(() => {
+  return  queryInterface.addColumn('reviews', 'userId', Sequelize.INTEGER).then(() => {
           queryInterface.addColumn('reviews', 'bookId', Sequelize.INTEGER)}).then(() => {
-          queryInterface.addColumn('reviews', 'ratingId', Sequelize.INTEGER)}).then(() => {
           queryInterface.addColumn('genres', 'bookId', Sequelize.INTEGER)})
     
     /*
@@ -27,13 +23,10 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
     */
     
-  return queryInterface.addColumn('ratings', 'userId').then(() => {
-      queryInterface.addColumn('ratings', 'bookId')}).then(() => {
-      queryInterface.addColumn('ratings', 'reviewId')}).then(() => {
-      queryInterface.addColumn('reviews', 'userId')}).then(() => {
-      queryInterface.addColumn('reviews', 'bookId')}).then(() => {
-      queryInterface.addColumn('reviews', 'ratingId')}).then(() => {
-      queryInterface.addColumn('genres', 'bookId')})
+  return 
+      queryInterface.removeColumn('reviews', 'userId').then(() => {
+      queryInterface.removeColumn('reviews', 'bookId')}).then(() => {
+      queryInterface.removeColumn('genres', 'bookId')})
     
     /*
       Example:
