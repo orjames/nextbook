@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// AJAX to update users genres
+// AJAX to update user's genres
 function addToGenres(e) {
   var genre = e.currentTarget.innerText; //event.target is the target of the event(click), or the genre that was clicked on
   e.target.style.display = 'none';

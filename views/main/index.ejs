@@ -1,5 +1,7 @@
-<h3 class="card-header text-center"><i class="fas fa-home"></i> Home<br>
-<small h5 class="card-header text-center offWhite"><i class="fas fa-code-branch"></i> Your Recommended Books <i class="fas fa-code-branch"></i></small></h3>
+<div class='card-header text-center'>
+<h3><i class="fas fa-home"></i> Home</h3>
+<h5 class="offWhite"><i class="fas fa-code-branch"></i> Your Recommended Books</h5>
+</div>
 
 <div class="row mb-5">
 <% books.forEach(function(book, index) { %>
@@ -27,7 +29,7 @@
         </div>
         <ul class="list-group list-group-flush text-white bg-dark">
           <li class="list-group-item text-white bg-dark">Rating: <span class='green' id='google_rating'><%= book.averageRating %></span>
-            • <span class='green' id='numRatings'><%= book.ratingsCount %></span> ratings</li>
+            • <span class='offWhite' id='numRatings'><%= book.ratingsCount %> ratings</span></li>
           <li class="list-group-item text-white bg-dark">
           Genres:
           <span class='green' id='genre'>

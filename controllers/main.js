@@ -28,7 +28,7 @@ const goodreadsKey = process.env.GOODREADS_KEY;
 
 const async = require('async');
 let genres=[];
-let requestIndexes = [ 0, 40, 80, 120, 160, 200, 240] // if more searches desired, add more numbers in this array, increments of 40
+let requestIndexes = [ 0, 40, 80, 120] // if more searches desired, add more numbers in this array, increments of 40
 
 // GET /main/index takes you to show reccomended books search, calls isLoggedIn middleware
 router.get('/', isLoggedIn, function(req, res) {

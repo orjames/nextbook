@@ -70,6 +70,7 @@ router.get('/', isLoggedIn, function(req, res) {
       //     }
       //   });
       // })
+      console.log(googleBooks);
       res.render('search/show', {googleBooks: googleBooks});
       // res.json(googleBooks);
     });

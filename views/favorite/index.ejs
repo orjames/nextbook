@@ -1,23 +1,32 @@
 <h3 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Favorites</h3>
 
+<div class="row mb-5">
 <% favorites.forEach(function(book, index) { %>
 
-  <div class="card text-white bg-dark mb-5 mx-auto mt-3">
-  
-    <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
-    
-    <div class="card-body text-white bg-dark">
-      <h3 class='white'>
-          <%= book.title %>
-          <small class='green'>by <%= book.author %></small>
-      </h3>
-      <form method="POST" class='text-center mt-3' action="/favorite/:isbn?_method=DELETE">
+<div class='col-lg-6 mt-1'> 
+    <div class="card mb-5 text-white bg-dark" style="max-width: 550px;">
+      <div class="row no-gutters text-white bg-dark">
+        <div class="col-md-4 text-white bg-dark">
+        <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
+        </div>
+        
+        <div class="col-md-8 text-white bg-dark">
+          <div class="card-body text-white bg-dark">
+            <h5 class="card-title text-white bg-dark"><%= book.title %> <small><span class='green'>by <%= book.author %></small></span></h5>
+            <p class="card-text text-white bg-dark">Genre: <span class='green'><%= book.genre %></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <form method="POST" class='text-center mt-3' action="/favorite/:isbn?_method=DELETE">
         <input hidden type="text" name='isbn' value="<%= book.isbn %>">
           <button type="submit" class="btn btn-block text-white bg-dark"><i class="far fa-trash-alt"></i>
           <span class='green'> Remove</span></button>
-      </form>
-          
+        </form>
+      </div>
     </div>
   </div>
 
+
 <% }); %>
+</div>
