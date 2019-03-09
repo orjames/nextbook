@@ -1,4 +1,4 @@
-<h1 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h1>
+<h1 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Favorites</h1>
 
 <% books.forEach(function(book, index) { %>
 
@@ -14,13 +14,11 @@
           <h3>your book review: <%= book.reviews[0].text %> </h3>
           <small>your rating is: <%= book.reviews[0].rating %></small>
     </div>
-    
     <form method="POST" action="/mybooks/:isbn?_method=DELETE">
       <input hidden type="text" name='isbn' value="<%= book.isbn %>">
-        <button type="submit" class="btn btn-primary text-white bg-dark ml-3"><i class="far fa-trash-alt"></i></button>
+        <button type="submit" class="text-white bg-dark ml-3"><i class="far fa-trash-alt"></i></button>
     </form>
 
-      <a href='/mybooks/<%= book.id %>/edit' class="btn btn-primary text-white bg-dark ml-3 mb-5"><i class="far fa-edit"></i></a>
   </div>
 
 <% }); %>

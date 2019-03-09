@@ -1,18 +1,25 @@
 <form action="/auth/signup" method="POST">
-  <div class="form-group">
-    <label for="authEmail">Email</label>
-    <input id="authEmail" class="form-control" type="email" name="email">
+
+  <div class="input-group mb-3 text-white bg-dark">
+    <div class="input-group-prepend text-white bg-dark">
+      <span class="input-group-text text-white bg-secondary" id="basic-addon1">Email</span>
+    </div>
+    <input type="text" id="authEmail" class="form-control text-white bg-dark" type="email" name="email" placeholder="email address..." aria-label="email address..." aria-describedby="email address">
   </div>
 
-  <div class="form-group">
-    <label for="authName">Name</label>
-    <input id="authName" class="form-control" type="text" name="name">
+  <div class="input-group mb-3 text-white bg-dark">
+    <div class="input-group-prepend text-white bg-dark">
+      <span class="input-group-text text-white bg-secondary" id="basic-addon2">Name</span>
+    </div>
+    <input id="authName" class="form-control text-white bg-dark" type="text" name="name" placeholder="your name..." aria-label="your name..." aria-describedby="your name">
   </div>
 
-  <div class="form-group">
-    <label for="authPassword">Password</label>
-    <input id="authPassword" class="form-control" type="password" name="password">
+  <div class="input-group mb-3 text-white bg-dark">
+    <div class="input-group-prepend text-white bg-dark">
+      <span class="input-group-text text-white bg-secondary" id="basic-addon2">Password</span>
+    </div>
+    <input id="authPassword" class="form-control text-white bg-dark" type="password" name="password" placeholder="password..." aria-label="password..." aria-describedby="password">
   </div>
 
-  <input class="btn btn-primary" type="submit">
+  <input class="btn btn-primary text-white bg-dark" type="submit">
 </form>

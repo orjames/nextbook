@@ -1,8 +1,6 @@
 <h1 class="card-header text-center"><i class="fas fa-home"></i> Home</h1>
 <h1 class="card-header text-center"><i class="fas fa-code-branch"></i> Your Recommended Books</h1>
 
-
-
 <div class="row mb-5">
 <% books.forEach(function(book, index) { %>
 
@@ -17,7 +15,7 @@
   
 
       <div class="card text-white bg-dark">
-        <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+        <img data-src="<%= book.imageUrl %>" class="rounded mx-auto d-block lazyload" alt="book image">
         <a hidden id='book_link' href='<%= book.bookLink %>'><%= book.bookLink %></a>
         <a href=""></a>
         <div class="card-body">
@@ -48,5 +46,7 @@
     </div>
   </form>
 <% }); %>
+
+
   
   </div>
