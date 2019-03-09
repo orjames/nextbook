@@ -4,12 +4,15 @@ white: rgb(255, 255, 255);
 off-white: 
 blue: rgb(50, 90, 123);
 */
+ul {
+  display: none;
+}
 
 i, .white {
   color: rgb(255, 255, 255);
 }
 
-h1, a, .green {
+h1, a, h3, .green {
   color: rgb(153, 226, 101);
 }
 

@@ -1,26 +1,42 @@
-<h1 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h1>
+<h3 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h3>
 
+<div class="row mb-5">
 <% books.forEach(function(book, index) { %>
 
-  <div class="card text-white bg-dark mb-5 mx-auto">
-  
-    <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
-    
-    <div class="card-body text-white bg-dark">
-      <h2>
-          <a href="#"><%= book.title %></a>
-          <small>by <%= book.author %></small>
-      </h2>
-          <h3>your book review: <%= book.reviews[0].text %> </h3>
-          <small>your rating is: <%= book.reviews[0].rating %></small>
+<div class='col-lg-6 mt-1'> 
+    <div class="card mb-5 text-white bg-dark" style="max-width: 550px;">
+      <div class="row no-gutters text-white bg-dark">
+        <div class="col-md-4 text-white bg-dark">
+        <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
+        </div>
+        
+        <div class="col-md-8 text-white bg-dark">
+          <div class="card-body text-white bg-dark">
+            <h5 class="card-title text-white bg-dark"><%= book.title %> <small><span class='green'>by <%= book.author %></small></span></h5>
+            <p class="card-text text-white bg-dark">Rating: <span class='green'><%= reviews[index].rating %>/5</span></p>
+            <p class="card-text text-white bg-dark">Review: <span class='offWhite'><%= reviews[index].text %></span></p>
+            <p class="card-text text-white bg-dark"><small class="text-muted">
+            
+            </small></p>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <ul class="nav nav-pills nav-justified">
+          <li class="nav-item ">
+          <a href='/mybooks/<%= book.id %>/edit' class="btn btn-block text-white bg-dark"><i class="far fa-edit"></i> <span class='green'>Edit</span></a>
+          </li>
+          <li class="nav-item">
+          <form method="POST" action="/mybooks/:isbn?_method=DELETE">
+            <input hidden type="text" name='isbn' value="<%= book.isbn %>">
+            <button type="submit" class="btn btn-block text-white bg-dark"><i class="far fa-trash-alt"></i> <span class='green'>Remove</span></button>
+          </form>
+          </li>
+        <ul>
+      </div>
     </div>
-    
-    <form method="POST" action="/mybooks/:isbn?_method=DELETE">
-      <input hidden type="text" name='isbn' value="<%= book.isbn %>">
-        <button type="submit" class="btn btn-primary text-white bg-dark ml-3"><i class="far fa-trash-alt"></i></button>
-    </form>
-
-      <a href='/mybooks/<%= book.id %>/edit' class="btn btn-primary text-white bg-dark ml-3 mb-5"><i class="far fa-edit"></i></a>
   </div>
 
+
 <% }); %>
+</div>

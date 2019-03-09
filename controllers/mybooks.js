@@ -14,12 +14,16 @@ xmlToJSON.stringToXML = (string) => new DOMParser().parseFromString(string, 'tex
 
 // GET /mybooks/index takes you to your collection of books calls isLoggedIn middleware, includes ratings and reviews 
 router.get('/', isLoggedIn, function(req, res) {
-  db.book.findAll({
-    include: [db.review]
+  db.user.findAll({
+    where: {id: req.user.id},
+    include: [db.book, db.review]
   })
-  .then(books => {
-    res.render('mybooks', {books: books, user: req.user});
-    // res.json(books);
+  .then(user => {
+    var books = user[0].get({plain: true}).books;
+    console.log('books is.......................',books);
+    var reviews = user[0].get({plain: true}).reviews;
+    console.log('reviews is.......................',reviews);
+    res.render('mybooks', {books: books, reviews: reviews, user: req.user});
   }).catch(function(error) {
     res.status(500).render('main/error')
   })
@@ -29,8 +33,8 @@ router.get('/', isLoggedIn, function(req, res) {
 router.get('/new/:isbn', isLoggedIn, function(req, res) {
   console.log('isbn is :) :)', req.params.isbn);
   let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.params.isbn}&printType=books` 
-  let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.params.isbn}`
-  console.log('your amazon url is ', goodreadsUrl);
+  // let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.params.isbn}`
+  // console.log('your amazon url is ', goodreadsUrl);
   console.log('your google url is ', googlebooksUrl);
   // Use request to call the API
   request(googlebooksUrl, function(error, response, body) {
@@ -50,23 +54,23 @@ router.get('/new/:isbn', isLoggedIn, function(req, res) {
       previewLink: (googleBooksOriginal.volumeInfo.previewLink) ? googleBooksOriginal.volumeInfo.previewLink : 'no preview link',
       price: (googleBooksOriginal.saleInfo.retailPrice) ? googleBooksOriginal.saleInfo.retailPrice.amount : 'not for sale'
     }
-    request(goodreadsUrl, function(error, response, body) {
-      var amazonBooksOriginal = xmlToJSON.parseString(body).GoodreadsResponse[0].search[0].results[0].work;
-      var amazonBooks = [];
-      amazonBooksOriginal.forEach(function(book, index) {
-        amazonBooks[index] = {
-          ratingsCount: book.ratings_count[0]._text,
-          reviewsCount: book.text_reviews_count[0]._text,
-          publicationYear: book.original_publication_year[0]._text,
-          averageRating: book.average_rating[0]._text,
-          title: book.best_book[0].title[0]._text,
-          author: book.best_book[0].author[0].name[0]._text,
-          imageUrl: book.best_book[0].image_url[0]._text
-        }
-      })
-        res.render('mybooks/new', {book: book, amazonBooks: amazonBooks});
-        // res.JSON(book);
-    })
+    // request(goodreadsUrl, function(error, response, body) {
+    //   var amazonBooksOriginal = xmlToJSON.parseString(body).GoodreadsResponse[0].search[0].results[0].work;
+    //   var amazonBooks = [];
+    //   amazonBooksOriginal.forEach(function(book, index) {
+    //     amazonBooks[index] = {
+    //       ratingsCount: book.ratings_count[0]._text,
+    //       reviewsCount: book.text_reviews_count[0]._text,
+    //       publicationYear: book.original_publication_year[0]._text,
+    //       averageRating: book.average_rating[0]._text,
+    //       title: book.best_book[0].title[0]._text,
+    //       author: book.best_book[0].author[0].name[0]._text,
+    //       imageUrl: book.best_book[0].image_url[0]._text
+    //     }
+    //   })
+    // })
+    res.render('mybooks/new', {book: book});
+    // res.JSON(book);
   });
 });
 

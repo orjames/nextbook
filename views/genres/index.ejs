@@ -1,17 +1,20 @@
 <div class='card-header text-center'>
-<h1><i class="fas fa-cogs"></i> <%= user.dataValues.name %>'s Genres</h1>
+<h3><i class="fas fa-cogs"></i> <%= user.dataValues.name %>'s Genres</h3>
 <h5 class="offWhite">Genres Help Us Determine Which Books to Recommend</h5>
 </div>
 
 <div class="card text-white bg-dark">
-  <div class="card-body text-white bg-dark">
-      <h3 class="text-center green">Selected Genres</h3>
+  <div class="card-body text-white bg-dark text-center">
+      <h4 class="text-center green">Selected Genres</h4>
     <p class="text-justify">
       <% genreNames.forEach(function(genre, index) { %>
       
+      
       <form method="POST" action="/genres/:genre?_method=DELETE">
       <input hidden type="text" name="genre" value="<%= genre %>">
-        <span class="badge badge-success myGenre"><i class="fas fa-minus mr-2"></i><%= genre %><button type="submit" class="badge badge-success ml-3"><i class="far fa-trash-alt"></i></button></span>
+        <button type="submit" class="btn badge-success mb-1">
+        <span class="badge badge-success myGenre"><i class="fas fa-minus mr-2"></i><%= genre %>
+        </button></span>
       </form>
 
       <% }); %>
@@ -22,9 +25,10 @@
 
 
 <div class="card text-white bg-dark mb-5">
-    <div class="card-body text-white bg-dark">
-      <h3 class="text-center green">Select From Genres</h3>
-      <p class="text-justify">
+    <div class="card-body text-center text-white bg-dark">
+      <h4 class="text-center green">Genres</h4>
+      <h5 class="offWhite">Select From the Options Below</h5>
+      <p class="">
       <% var genresAry = ["Science Fiction", "Art", "Biography", "Business", "Chick Lit", "Children's", "Christian", "Classics", "Comics", "Contemporary", "Cookbooks", "Crime", "Ebooks", "Fantasy", "Fiction", "Gay and Lesbian", "Graphic Novels", "Historical Fiction", "History", "Horror", "Humor and Comedy", "Manga", "Memoir", "Music", "Mystery", "Nonfiction", "Paranormal", "Philosophy", "Poetry", "Psychology", "Religion", "Romance", "Science", "Self Help", "Suspense", "Spirituality", "Sports", "Thriller", "Travel", "Young Adult"] %>
       <% genresAry.forEach(function(genre, index) { %>
         <% if (!genreNames.includes(genre)) { %>

@@ -1,11 +1,11 @@
-<h1 class="card-header text-center"><i class="fas fa-search"></i> Search Results</h1>
+<h3 class="card-header text-center"><i class="fas fa-search"></i> Search Results</h3>
 
 
 
   <div class="row mb-5">
 <% googleBooks.forEach(function(book, index) { %>
 
-  <div class='col-lg-6'> 
+  <div class='col-lg-6 mt-1'> 
 
   <form action="/mybooks/new" method="GET">
   <input hidden type="text" name="book_link" value="<%= book.imageUrl %>">
@@ -18,34 +18,47 @@
       <div class="card text-white bg-dark">
         <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
         <a hidden id='book_link' href='<%= book.bookLink %>'><%= book.bookLink %></a>
-        <a href=""></a>
         <div class="card-body">
-          <h5 class="card-title" id='title'><%= book.title %><small> by 
+          <h5 class="card-title" id='title'><%= book.title %><small class='green'> by 
             <span id='author'>
               <%= book.author %>
             </span> 
             (<span id='year'><%= book.publicationYear %></span>)</small></h5>
-          <p class="card-text text-justify" id='description'><%= book.description %></p>
+          <p class="card-text text-justify offWhite" id='description'><%= book.description %></p>
         </div>
         <ul class="list-group list-group-flush text-white bg-dark">
-          <li class="list-group-item text-white bg-dark">Average Rating: <span id='google_rating'><%= book.averageRating %></span>
-            • <span id='numRatings'><%= book.ratingsCount %></span> ratings</li>
+          <li class="list-group-item text-white bg-dark">Rating: <span class='green' id='google_rating'><%= book.averageRating %></span>
+            • <span class='green' id='numRatings'><%= book.ratingsCount %></span> ratings</li>
           <li class="list-group-item text-white bg-dark">
           Genres:
-          <span id='genre'>
+          <span class='green' id='genre'>
               <%= book.category %>
           </span>
           </li>
-          <li class="list-group-item text-white bg-dark">price: $<span id='price'><%= book.price %></span> • <a href="<%= book.previewLink %>" id='previewLink'><i class="fas fa-search"></i> preview</a></li>
-          <li class="list-group-item text-white bg-dark">ISBN: <span id='isbn'><%= book.isbn %></span></li>
+          <li class="list-group-item text-white bg-dark">price: $<span class='green' id='price'><%= book.price %></span> • <a href="<%= book.previewLink %>" id='previewLink'><i class="fas fa-search"></i> preview</a></li>
+          <li class="list-group-item text-white bg-dark">ISBN: <span class='green' id='isbn'><%= book.isbn %></span></li>
         </ul>
-        <div class="card-body text-white bg-dark">
-            <a class="btn btn-primary text-white bg-dark" type="submit" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>Add to mybooks</span></a>
-        </div>
+            </form>
+      </div>
+      <div class="card-footer text-center mb-5">
+        <ul class="nav nav-pills nav-justified text-center">
+          <li class="nav-item text-center">
+            <a class="btn btn-block text-white bg-dark" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>mybooks</span></a>
+          </li>
+          <li class="nav-item text-center">
+            <form action="/favorite" method="POST">
+                <input hidden type="text" name="book_link" value="<%= book.imageUrl %>">
+                <input hidden type="text" name="title" value="<%= book.title %>">
+                <input hidden type="text" name="author" value="<%= book.author %>">
+                <input hidden type="text" name="isbn" value="<%= book.isbn %>">
+                <input hidden type="text" name="genre" value="<%= book.category %>">
+                <button class="btn btn-block text-white bg-dark" type="submit" href='/favorite'><i class="far fa-plus-square"></i></i> <span class='green'>Favorites</span></button>
+            </form>
+          </li>
+        </ul>
       </div>
 
     </div>
-  </form>
+
 <% }); %>
-  
   </div>

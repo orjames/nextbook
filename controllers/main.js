@@ -28,7 +28,7 @@ const goodreadsKey = process.env.GOODREADS_KEY;
 
 const async = require('async');
 let genres=[];
-let requestIndexes = [ 0, 40, 80, 120, 160, 200, 240, 280, 320, 360, 400, 440, 480, 520]
+let requestIndexes = [ 0, 40, 80, 120, 160, 200, 240] // if more searches desired, add more numbers in this array, increments of 40
 
 // GET /main/index takes you to show reccomended books search, calls isLoggedIn middleware
 router.get('/', isLoggedIn, function(req, res) {
@@ -78,6 +78,7 @@ router.get('/', isLoggedIn, function(req, res) {
       // get rid of duplicate data
       let books = _.compact(_.flatten(results.map( r => r.value)))
       
+      // sorting the data by popularity
       function compare(a, b) {
         if (a.ratingsCount > b.ratingsCount)
           return -1;

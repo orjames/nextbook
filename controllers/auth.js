@@ -21,7 +21,7 @@ router.post('/signup', function(req, res) {
     if (created) { //success, so add authentication in this step
       console.log('user created');
       passport.authenticate('local', { //what type of auth are we doing = local
-        successRedirect: '/',
+        successRedirect: '/genres',
         successFlash: 'Account created and logged in' // sends message to the front
       })(req, res); //iife immediately invoked function expression
     } else { // failure, redirect to signup page

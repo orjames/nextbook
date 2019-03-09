@@ -70,6 +70,7 @@ app.use('/genres', require('./controllers/genres'));
 app.use('/main', require('./controllers/main'));
 app.use('/mybooks', require('./controllers/mybooks'));
 app.use('/search', require('./controllers/search'));
+app.use('/favorite', require('./controllers/favorite'));
 
 const server = app.listen(port, function() {
   console.log(`spinning on ${port}`)

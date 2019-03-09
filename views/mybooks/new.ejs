@@ -1,5 +1,7 @@
-<h1 class="card-header text-center"><i class="far fa-thumbs-up"></i> Rate and Review<br>
-<i class="far fa-plus-square"></i></i> Add to mybooks</h1>
+<div class='card-header text-center'>
+<h3><i class="far fa-thumbs-up"></i> Rate and Review</h3>
+<h5 class="offWhite"><i class="far fa-plus-square"></i></i> Add to mybooks</h5>
+</div>
   
 <form action="/mybooks" method="POST" class='justify-content-center'>
   <input hidden type="text" name="book_link" value="<%= book.imageUrl %>">
@@ -35,10 +37,10 @@
             <div class="input-group-prepend text-white bg-dark">
               <label class="input-group-text text-white bg-secondary" for="inputGroupSelect01">Rating</label>
             </div>
-            <select class="custom-select text-white bg-dark" id="rating" name="rating" required>
+            <select class="custom-select text-white bg-dark selectpicker" id="rating" name="rating" required data-show-icon="true">
               <option selected disabled>Choose...</option>
               <option value="0">0</option>
-              <option value="0.5">0.5</option>
+              <option data-iconBase="fontawesome" data-icon="fa-heart" value="0.5"></option>
               <option value="1">1.0<i class="fas fa-star"></i></option>
               <option value="1.5">1.5</option>
               <option value="2">2.0</option>
@@ -50,27 +52,27 @@
               <option value="5">5.0</option>
             </select>
           </div>
-            <i class="fas fa-star-half"></i><br>
-            <i class="fas fa-star"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i><br>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br>
+            <i class="fas fa-star-half"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star-half"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </li>
         <li class="list-group-item text-white bg-dark">
           <div class="input-group text-white bg-dark">
             <div class="input-group-prepend text-white bg-dark">
               <span class="input-group-text text-white bg-secondary">Review:</span>
             </div>
-            <textarea class="form-control" aria-label="With textarea" id="review" name="review" required></textarea>
+            <textarea class="form-control text-white bg-dark" aria-label="With textarea" id="review" name="review"></textarea>
           </div>
         </li>
         <li class="list-group-item text-white bg-dark mb-5">
-          <button class="btn btn-primary text-white bg-dark" href='/mybooks' type="submit"><i class="far fa-plus-square"></i></i> <span class='green'>Add to mybooks</span></button>
+          <button class="btn btn-block text-white bg-dark" href='/mybooks' type="submit"><i class="far fa-plus-square"></i></i> <span class='green'>Add to mybooks</span></button>
         </li>
         
       </ul>
