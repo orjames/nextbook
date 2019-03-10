@@ -1,5 +1,10 @@
 <div class='card-header text-center'>
-<h3><i class="fas fa-cogs"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h3>
+<h3><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h3>
+<div class="card-body text-white bg-dark text-center"
+<%=  books.length === 0 ? `` : `style=display:none` %>  >
+  <p class='offWhite'><b>my</b><b class='green'>books</b> is your collection of rated and reviewed books,<br>
+  search books you've read to add to <b>my</b><b class='green'>books</b></p>
+</div>
 </div>
 
 <div class="row mb-5">
@@ -9,7 +14,7 @@
     <div class="card mb-5 text-white bg-dark" style="max-width: 550px">
       <div class="row no-gutters text-white bg-dark">
         <div class="col-md-4 text-white bg-dark">
-        <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
+          <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
         </div>
         
         <div class="col-md-8 text-white bg-dark">
@@ -60,12 +65,12 @@
       <div class="card-footer">
         <ul class="nav nav-pills nav-justified">
           <li class="nav-item ">
-          <a href='/mybooks/<%= book.id %>/edit' class="btn btn-block text-white bg-dark"><i class="far fa-edit"></i> <span class='green'>Edit</span></a>
+          <a href='/mybooks/<%= book.id %>/edit' class="btn btn-block btn-secondary text-white bg-dark"><i class="far fa-edit"></i> <span class='green'>Edit</span></a>
           </li>
           <li class="nav-item">
           <form method="POST" action="/mybooks/:isbn?_method=DELETE">
             <input hidden type="text" name='isbn' value="<%= book.isbn %>">
-            <button type="submit" class="btn btn-block text-white bg-dark"><i class="far fa-trash-alt"></i> <span class='green'>Remove</span></button>
+            <button type="submit" class="btn btn-block btn-secondary text-white bg-dark"><i class="far fa-trash-alt"></i> <span class='green'>Remove</span></button>
           </form>
           </li>
         </ul>

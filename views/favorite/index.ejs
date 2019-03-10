@@ -1,4 +1,13 @@
-<h3 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Favorites</h3>
+<div class='card-header text-center'>
+<h3><i class="fas fa-heart"></i> <%= user.dataValues.name %>'s Favorites</h3>
+<div class="card-body text-white bg-dark text-center"
+  <%=  favorites.length > 0 ? `style=display:none` : "" %>  >
+  <p class="offWhite"><b>my</b><b class='green'>favorites</b> is a collection of books you want to read,<br>
+  favorites can be added by searching for a book,<br>
+  or selecting a recommended book from the home page,<br>
+  </p>
+</div>
+</div>
 
 <div class="row mb-5">
 <% favorites.forEach(function(book, index) { %>
@@ -20,7 +29,7 @@
       <div class="card-footer">
         <form method="POST" class='text-center mt-3' action="/favorite/:isbn?_method=DELETE">
         <input hidden type="text" name='isbn' value="<%= book.isbn %>">
-          <button type="submit" class="btn btn-block text-white bg-dark"><i class="far fa-trash-alt"></i>
+          <button type="submit" class="btn btn-block btn-secondary text-white bg-dark"><i class="far fa-trash-alt"></i>
           <span class='green'> Remove</span></button>
         </form>
       </div>

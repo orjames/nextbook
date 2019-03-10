@@ -1,21 +1,16 @@
 <div class='card-header text-center'>
 <h3><i class="fas fa-home"></i> Home</h3>
 <h5 class="offWhite"><i class="fas fa-code-branch"></i> Your Recommended Books</h5>
+<div class="card-body text-white bg-dark text-center"
+<%=  books.length === 0 ? `` : `style=display:none` %>  >
+  <p class='offWhite'>seach, then add books to <b>my</b><b class='green'>books</b></b> 
+  to start getting more personalized recommendations</p>
+</div>
 </div>
 
 <div class="row mb-5">
 <% books.forEach(function(book, index) { %>
-
   <div class='col-lg-6'> 
-
-  <form action="/mybooks/new" method="GET">
-  <input hidden type="text" name="book_link" value="<%= book.imageUrl %>">
-  <input hidden type="text" name="title" value="<%= book.title %>">
-  <input hidden type="text" name="author" value="<%= book.author %>">
-  <input hidden type="text" name="isbn" value="<%= book.isbn %>">
-  <input hidden type="text" name="genre" value="<%= book.category %>"> 
-  
-
       <div class="card text-white bg-dark">
         <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block lazyload" alt="book image">
         <a hidden id='book_link' href='<%= book.bookLink %>'><%= book.bookLink %></a>
@@ -76,12 +71,11 @@
           <li class="list-group-item text-white bg-dark">price: $<span class='green' id='price'><%= book.price %></span> • <a href="<%= book.previewLink %>" id='previewLink'><i class="fas fa-search"></i> preview</a></li>
           <li class="list-group-item text-white bg-dark">ISBN: <span class='green' id='isbn'><%= book.isbn %></span></li>
         </ul>
-            </form>
       </div>
       <div class="card-footer text-center mb-5">
         <ul class="nav nav-pills nav-justified">
           <li class="nav-item">
-            <a  class="btn btn-block text-white bg-dark" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>mybooks</span></a>
+            <a  class="btn btn-block btn-secondary text-white bg-dark" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>mybooks</span></a>
           </li>
           <li class="nav-item">
             <form action="/favorite" method="POST">
@@ -90,7 +84,7 @@
                 <input hidden type="text" name="author" value="<%= book.author %>">
                 <input hidden type="text" name="isbn" value="<%= book.isbn %>">
                 <input hidden type="text" name="genre" value="<%= book.category %>">
-                <button class="btn btn-block text-white bg-dark" type="submit" href='/favorite'><i class="far fa-plus-square"></i></i> <span class='green'>Favorites</span></button>
+                <button class="btn btn-block btn-secondary text-white bg-dark" type="submit" href='/favorite'><i class="far fa-plus-square"></i></i> <span class='green'>Favorites</span></button>
             </form>
           </li>
         </ul>

@@ -81,7 +81,7 @@
       <div class="card-footer text-center mb-5">
         <ul class="nav nav-pills nav-justified text-center">
           <li class="nav-item text-center">
-            <a class="btn btn-block text-white bg-dark" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>mybooks</span></a>
+            <a class="btn btn-block btn-secondary text-white bg-dark" href='mybooks/new/<%= book.isbn %>'><i class="far fa-plus-square"></i></i> <span class='green'>mybooks</span></a>
           </li>
           <li class="nav-item text-center">
             <form action="/favorite" method="POST">
@@ -90,7 +90,7 @@
                 <input hidden type="text" name="author" value="<%= book.author %>">
                 <input hidden type="text" name="isbn" value="<%= book.isbn %>">
                 <input hidden type="text" name="genre" value="<%= book.category %>">
-                <button class="btn btn-block text-white bg-dark" type="submit" href='/favorite'><i class="far fa-plus-square"></i></i> <span class='green'>Favorites</span></button>
+                <button class="btn btn-block btn-secondary text-white bg-dark" type="submit" href='/favorite'><i class="far fa-plus-square"></i></i> <span class='green'>Favorites</span></button>
             </form>
           </li>
         </ul>

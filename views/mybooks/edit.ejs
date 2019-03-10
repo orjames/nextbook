@@ -5,7 +5,7 @@
 <% books.forEach(function(book, index) { %>
 
   <div class="card text-white bg-dark mb-5 mx-auto">
-    <img src="<%= book.imageUrl %>" class="rounded mx-auto d-block" alt="book image">
+    <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
     
     <div class="card-body text-white bg-dark">
       <h2>
@@ -38,9 +38,10 @@
         <textarea class="form-control text-white bg-dark" name='text' aria-label="With textarea"><%= book.reviews[0].text %></textarea>
       </div>
     </div>
-    
+    <div class="card-footer">
       <input hidden type="text" name='review' value="<%= book.reviews[0].bookId %>">
-      <button class="btn btn-primary text-white bg-dark" type="submit"><i class="far fa-plus-square"></i></i> <span class='green'>Submit</span></button>
+      <button class="btn btn-block btn-secondary text-white bg-dark"><i class="far fa-plus-square"></i></i> <span class='green'>Submit</span></button>
+    </div>
     </form>
     
         
