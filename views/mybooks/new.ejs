@@ -22,7 +22,44 @@
         <p class="card-text text-justify offWhite" id='description'><%= book.description %></p>
       </div>
       <ul class="list-group list-group-flush text-white bg-dark">
-      <li class="list-group-item text-white bg-dark">Rating: <span class='green' id='google_rating'><%= book.averageRating %></span>
+      <li class="list-group-item text-white bg-dark"><span class='green' id='google_rating'>
+      <% switch (book.averageRating) { 
+            case 0: 
+          %>-<%
+              break 
+            case 0.5: 
+        %><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 1: 
+        %><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 1.5: 
+        %><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 2: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 2.5: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 3: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 3.5: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><%
+              break 
+            case 4: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><%
+              break 
+            case 4.5: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><%
+              break 
+            case 5: 
+        %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><%
+              break 
+            default: 
+          } %>
+      </span>
       • <span class='offWhite' id='numRatings'><%= book.ratingsCount %> ratings</span></li>
     <li class="list-group-item text-white bg-dark">
     Genres:
@@ -52,16 +89,6 @@
               <option value="5">5.0</option>
             </select>
           </div>
-            <i class="fas fa-star-half"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star-half"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half"></i>
-            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
         </li>
         <li class="list-group-item text-white bg-dark">
           <div class="input-group text-white bg-dark">

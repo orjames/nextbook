@@ -1,10 +1,9 @@
 <h3 class="card-header text-center"><i class="fas fa-book-open"></i> <%= user.dataValues.name %>'s Books</h3>
-
 <div class="row mb-5">
 <% books.forEach(function(book, index) { %>
 
 <div class='col-lg-6 mt-1'> 
-    <div class="card mb-5 text-white bg-dark" style="max-width: 550px;">
+    <div class="card mb-5 text-white bg-dark" style="max-width: 550px">
       <div class="row no-gutters text-white bg-dark">
         <div class="col-md-4 text-white bg-dark">
         <img src="<%= book.book_link %>" class="rounded mx-auto d-block" alt="book image">
@@ -13,7 +12,44 @@
         <div class="col-md-8 text-white bg-dark">
           <div class="card-body text-white bg-dark">
             <h5 class="card-title text-white bg-dark"><%= book.title %> <small><span class='green'>by <%= book.author %></small></span></h5>
-            <p class="card-text text-white bg-dark">Rating: <span class='green'><%= reviews[index].rating %>/5</span></p>
+            <p class="card-text text-white bg-dark">
+            <% switch (reviews[index].rating) { 
+              case 0: 
+            %>-<%
+                break 
+              case 0.5: 
+          %><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 1: 
+          %><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 1.5: 
+          %><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 2: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 2.5: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 3: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 3.5: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i><%
+                break 
+              case 4: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><%
+                break 
+              case 4.5: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><%
+                break 
+              case 5: 
+          %><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><%
+                break 
+              default: 
+            } %>
+            </p>
             <p class="card-text text-white bg-dark">Review: <span class='offWhite'><%= reviews[index].text %></span></p>
           </div>
         </div>
@@ -35,5 +71,5 @@
   </div>
 
 
-<% }); %>
+<% }) %>
 </div>

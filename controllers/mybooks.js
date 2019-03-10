@@ -20,9 +20,7 @@ router.get('/', isLoggedIn, function(req, res) {
   })
   .then(user => {
     var books = user[0].get({plain: true}).books;
-    console.log('books is.......................',books);
     var reviews = user[0].get({plain: true}).reviews;
-    console.log('reviews is.......................',reviews);
     res.render('mybooks', {books: books, reviews: reviews, user: req.user});
   }).catch(function(error) {
     res.status(500).render('main/error')
@@ -31,11 +29,9 @@ router.get('/', isLoggedIn, function(req, res) {
 
 // GET /mybooks/new
 router.get('/new/:isbn', isLoggedIn, function(req, res) {
-  console.log('isbn is :) :)', req.params.isbn);
   let googlebooksUrl = `https://www.googleapis.com/books/v1/volumes?q=isbn:${req.params.isbn}&printType=books` 
   // let goodreadsUrl = `https://www.goodreads.com/search.xml?key=${goodreadsKey}&q=${req.params.isbn}`
   // console.log('your amazon url is ', goodreadsUrl);
-  console.log('your google url is ', googlebooksUrl);
   // Use request to call the API
   request(googlebooksUrl, function(error, response, body) {
     var googleBooksOriginal = JSON.parse(body).items ? JSON.parse(body).items[0] : 'no API for the book'
@@ -76,7 +72,6 @@ router.get('/new/:isbn', isLoggedIn, function(req, res) {
 
 // POST /mybooks - receive the name of a book title etc of a book then add it to the books table
 router.post('/', isLoggedIn, function(req, res) {
-  console.log('your req.body is ..........................:):)', req.body);
   db.user.findById(parseInt(req.user.dataValues.id), {include: [db.review]}).then(function (user) {
     user.createBook({
         book_link: req.body.book_link,
@@ -143,7 +138,7 @@ router.delete('/:isbn', isLoggedIn, function(req, res) {
         res.redirect('/mybooks')
       })
     } else {
-      console.log("can't delete");
+      res.status(500).render('main/error')
     }
   })
 })
