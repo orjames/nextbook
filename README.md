@@ -213,6 +213,19 @@ let books = _.compact(_.flatten(results.map( r => r.value)))
 ### heroku deployment
 My app was working perfectly when everything was hosted locally, and then everything broke when I deployed the app on Heroku. After hours of searching I found that there was still a column on my reviews table for ratingId. This meant that the app was looking for a relation to a rating table that no longer existed in the database.
 
+### UI testing
+I sent out the heroku link to a handfull of people for testing and feedback. I received conflicting feedback. A handful of people said the instructions are unclear. I added ternary's to the html class tag to display divs containing instructions when the user hadn't added any books or favorites etc. The next bit of feedback was "theres a little too much text" I just want to click stuff. I guess you can't win.
+
+One error I was getting was that my app wasn't as mobile friendly on small screens.
+
+  ![img](./public/img/testingFirst.png)
+
+The navbar at the bottom was blocking the funcitonality of the app. I adjusted and learned my lesson.
+
+A funny little side not was that safari identified the isbns as phone numbers
+
+  ![img](./public/img/testingSecond.png)
+
 ## Known Issues
 ### Recommendation engine
 Right now the functionality of the recommendation engine isn’t what I wanted it to be. It’s going strictly on the first genre that the user outputted. My next step is to tie in the goodreads API to then sort by goodreads rating which would be more accurate and have a more robust set of data. I applied to more access to goodreads actual booklists which is a really neat funcitonality of user voted lists based on genres and sub-genres. I never heard back from them (pinging Amazon), but would love to delve into that method of API request.
