@@ -1,16 +1,16 @@
 <% if(currentUser) { %>
   <ul id='bottomNav'class="nav nav-pills nav-justified mt-n2 mb-n2">
     <li class="nav-item">
-      <a class="nav-link btn bg-dark green" href="/favorite"><i class="fas fa-heart"></i></i><br>Favs</a>
+      <a class="nav-link btn bg-dark green" href="/favorite"><i class="fas fa-heart"></i></i><br><small>Favs</small></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn bg-dark green" href="/search/new"><i class="fas fa-search"></i><br>Search</a>
+      <a class="nav-link btn bg-dark green" href="/search/new"><i class="fas fa-search"></i><br><small>Search</small></a>
+    </li>
+    <li class="nav-item small">
+      <a class="nav-link btn bg-dark green" href="/mybooks"><i class="fas fa-book-open"></i><br><small>Mybooks</small></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link btn bg-dark green" href="/mybooks"><i class="fas fa-book-open"></i><br>Mybooks</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link btn bg-dark green" href="/genres"><i class="fas fa-cogs"></i><br>Genres</a>
+      <a class="nav-link btn bg-dark green" href="/genres"><i class="fas fa-cogs"></i><br><small>Genres</small></a>
     </li>
   </ul>
 <% } else { %>
