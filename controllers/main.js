@@ -37,7 +37,7 @@ router.get('/', isLoggedIn, function(req, res) {
         let url = `https://www.googleapis.com/books/v1/volumes?q=category:${genres[0]}&printType=books&maxResults=40&startIndex=${index}`
         // console.log('url is', url)
         request (url, function(error, res, body) {
-          if (JSON.parse(body).items) {
+          if (JSON.parse(body)) {
             let googleBooks = JSON.parse(body).items;
             let books = googleBooks.map(function(book) {
               // filters results

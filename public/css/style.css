@@ -39,3 +39,8 @@ h1, a, h3, .green {
 .footer {
   height: 80px;
 }
+
+.link {
+  color: rgb(43, 43, 179);
+  text-decoration: underline;
+}

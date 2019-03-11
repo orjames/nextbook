@@ -15,8 +15,7 @@ To create a full-stack Node application using Express that pulls information abo
 * [x] Include wireframes that you designed during the planning process.
 
 ### Wireframes
-Initial wireframes and prototyping of Mobile and Desktop views can be found here: 
-https://wireframe.cc/xpkjEJ
+Initial wireframes and prototyping of Mobile and Desktop views can be found [here](https://wireframe.cc/xpkjEJ)
 
 ### Trello Board
 View the project Trello Board [here](https://trello.com/b/YBlxEvyb/nextbook)
@@ -91,7 +90,6 @@ ER Diagram
 - GET /search/new
 - GET /search/show
 - GET /
-
 
 ### Authentication Boilerplate
 I started with an authentication boilerplate using Express authentication template, Passport + flash messages + encryption + custom middleware. Includes routes to log, in signup, and sign out.
