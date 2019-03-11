@@ -9,6 +9,10 @@
     <p class='offWhite'>Select one or more genres,<br>
     then search to start adding books to your <b>my</b><b class='green'>books</b> collection<br></p>
   </div>
+  <div class="card-body text-white bg-dark text-center mb-0 mt-0"
+  <%=  genreNames.length < 0 ? `style=display:none` : "" %>  >
+    <p class='offWhite mb-0'>once genres have been selected, search for books you've read</p>
+  </div>
   <div class="card-body text-white bg-dark text-center"
   <%=  genreNames.length === 0 ? `style=display:none` : "" %>  >
       <h4 class="text-center green">Selected Genres</h4>
