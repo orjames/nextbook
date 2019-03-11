@@ -218,13 +218,13 @@ I sent out the heroku link to a handfull of people for testing and feedback. I r
 
 One error I was getting was that my app wasn't as mobile friendly on small screens.
 
-  ![img](./public/img/testingFirst.png)
+  ![img](./public/img/testingFirst.jpg)
 
 The navbar at the bottom was blocking the funcitonality of the app. I adjusted and learned my lesson.
 
 A funny little side not was that safari identified the isbns as phone numbers
 
-  ![img](./public/img/testingSecond.png)
+  ![img](./public/img/testingSecond.jpg)
 
 ## Known Issues
 ### Recommendation engine
