@@ -22,7 +22,7 @@ router.get('/', isLoggedIn, function(req, res) {
   })
 });
 
-// POST /mybooks - receive the name of a book title etc of a book then add it to the books table
+// POST /favorite - receive the name of a book title etc of a book then add it to the favorites table
 router.post('/', isLoggedIn, function(req, res) {
   console.log('your req.body is ..........................:):)', req.body);
   db.user.findById(parseInt(req.user.dataValues.id), { include: [db.favorite] }).then(function (user) {
@@ -52,7 +52,7 @@ router.post('/', isLoggedIn, function(req, res) {
 });
 
 
-// DELETE /mybooks - delete a genre from mybooks index
+// DELETE /favorite - delete a genre from mybooks index
 router.delete('/:isbn', isLoggedIn, function(req, res) {
   db.user.findById(parseInt(req.user.id), { include: [ db.favorite] }).then(function (user) {
     var favorites = user.get({plain: true}).favorites;
