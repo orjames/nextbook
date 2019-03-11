@@ -21,6 +21,9 @@ router.get('/', isLoggedIn, function(req, res) {
   .then(user => {
     var books = user[0].get({plain: true}).books;
     var reviews = user[0].get({plain: true}).reviews;
+    console.log('reviews is👍👍👍👍👍👍👍👍👍👍👍👍👍👍', reviews)
+    console.log('user is👍👍👍👍👍👍👍👍👍👍👍👍👍👍', user)
+    console.log('books is👍👍👍👍👍👍👍👍👍👍👍👍👍👍', books)
     res.render('mybooks', {books: books, reviews: reviews, user: req.user});
   }).catch(function(error) {
     res.status(500).render('main/error')
