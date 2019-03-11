@@ -208,6 +208,8 @@ let books = _.compact(_.flatten(results.map( r => r.value)))
       }
       books.sort(compare);
 ```
+### heroku deployment
+My app was working perfectly when everything was hosted locally, and then everything broke when I deployed the app on Heroku. After hours of searching I found that there was still a column on my reviews table for ratingId. This meant that the app was looking for a relation to a rating table that no longer existed in the database.
 
 ## Known Issues
 ### Recommendation engine

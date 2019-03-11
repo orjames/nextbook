@@ -27,7 +27,7 @@ router.get('/', isLoggedIn, function(req, res) {
     request(googlebooksUrl, function(error, response, body) {
       var googleBooksOriginal = JSON.parse(body).items;
       var googleBooks = [];
-      if (JSON.parse(body).items) {
+      // if (JSON.parse(body).items) {
         googleBooksOriginal.forEach(function(book, index) {
           if (book.volumeInfo.industryIdentifiers) {
             if (book.volumeInfo.industryIdentifiers[0].type != 'OTHER') {
@@ -48,10 +48,10 @@ router.get('/', isLoggedIn, function(req, res) {
             }
           }
         })
-      } else {
-        req.flash('error','Please try again');
-        res.redirect('/search/new');
-      }
+      // } else {
+      //   req.flash('error','Please try again');
+      //   res.redirect('/search/new');
+      // }
       function compare(a, b) {
         if (a.ratingsCount > b.ratingsCount)
           return -1;
@@ -88,7 +88,7 @@ router.get('/', isLoggedIn, function(req, res) {
       console.log(JSON.parse(body).items)
       var googleBooksOriginal = JSON.parse(body).items;
       var googleBooks = [];
-      if (JSON.parse(body).items) {
+      // if (JSON.parse(body).items) {
         googleBooksOriginal.forEach(function(book, index) {
           if (book.volumeInfo.industryIdentifiers) {
             if (book.volumeInfo.industryIdentifiers[0].type != 'OTHER') {
@@ -109,10 +109,10 @@ router.get('/', isLoggedIn, function(req, res) {
             }
           }
         })
-      } else {
-        req.flash('error','Please try again');
-        res.redirect('/search/new');
-      }
+      // } else {
+      //   req.flash('error','Please try again');
+      //   res.redirect('/search/new');
+      // }
       function compare(a, b) {
         if (a.ratingsCount > b.ratingsCount)
           return -1;
@@ -148,7 +148,7 @@ router.get('/', isLoggedIn, function(req, res) {
       var googleBooksOriginal = JSON.parse(body).items;
       var googleBooks = [];
       googleBooksOriginal.forEach(function(book, index) {
-        if (JSON.parse(body).items) {
+        // if (JSON.parse(body).items) {
           googleBooksOriginal.forEach(function(book, index) {
             if (book.volumeInfo.industryIdentifiers) {
               if (book.volumeInfo.industryIdentifiers[0].type != 'OTHER') {
@@ -169,10 +169,10 @@ router.get('/', isLoggedIn, function(req, res) {
               }
             }
           })
-        } else {
-          req.flash('error','Please try again');
-          res.redirect('/search/new');
-        }
+        // } else {
+        //   req.flash('error','Please try again');
+        //   res.redirect('/search/new');
+        // }
       function compare(a, b) {
         if (a.ratingsCount > b.ratingsCount)
           return -1;
