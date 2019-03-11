@@ -97,11 +97,14 @@ I started with an authentication boilerplate using Express authentication templa
 ## Challenges
 ### Search functionality:
 The first major challenge was implementing the search functionality. I wanted to be able to search by author, title, and category. This meant some tricky API query searches. I ended up having to change the actual URL of the API depending on what I was searching. I used DOM manipulation to display what the user wants to search by, then sent that to the back-end. From there I used conditionals to distinguish what the user wanted to search by and used the corresponding API search. I then rendered the search results on a page, allowing the user to select which book they want to rate and review then add to their mybooks collection.
+
 After selecting a book the user is redirected a page which displays the selected the book, where the user must add a rating and optional review before they can add it to their personal book collection (mybooks).
-This was a lot of back-end, behind the scenes work. This is because the book model is linked to four different models. This involved many revisions of my models (missing columns, foreign keys, new migrations, and on). I ended up removing a table (ratings) combining it with ratings, and changing books to have no relationship with genres. This streamlined my database associations and will make my routes much simpler.
+
+This was a lot of back-end, behind the scenes work,because the book model is linked to four different models. This involved many revisions of my models (missing columns, foreign keys, new migrations, and on). I ended up removing a table (ratings) combining it with ratings, and changing books to have no relationship with genres. This streamlined my database associations and will make my routes much simpler.
 
 ### Sorting Results
 The Google Books API had no parameter to order the search results. This was maddening because the if I searched “Harry Potter” I got “The Baptism of Harry Potter – A Christian Reading”, which sounds riveting, but was not what I’m looking for.
+
 Looking at the information coming back from the API, I had to decide what to sort by. This functionality would hopefully come into play for my recommendation engine. I decided to go with the count of ratings. I leveraged ternary’s to change the value of falsey or incorrect string values to zero. Then I used my sort function. I put this on the GET route on the back end to sort the value before it gets displayed.
 ```
 function compare(a, b) {
@@ -116,7 +119,8 @@ function compare(a, b) {
 
 ### Genre’s
 I wanted to add functionality where a user could select a genre from a pre-populated list to help build a profile of what the user likes to read which would be used for the recommendation engine. I decided the best way to go about this would be an AJAX call. I wanted a user interface that was clean and responsive that would essentially move a genre you click in from available genres into your selected genres.
-Recommendation Engine
+
+### Recommendation Engine
 My app had full crud routes by the time I got to my recommendation engine. The idea was that based on the user’s chosen genres and reviewed books, the app could recommend books for the user. Slick right? I knew this would be a challenge. I came back to the same problem of the googleBooks API having a weird search engine that outputted strange results. I found a workaround deep in the googleBooks API notes where you could paginate your queries. This means that regardless of the results I could beat the max 40 results using async, get a ton of results back from the API, then filter them on the back-end. I would base my initial query based on the user’s genres selected, then find out a good way to filter them. I set it up so the URL of the query would have a few variables in it:
 ```
 let url = `https://www.googleapis.com/books/v1/volumes?q=category:${genres[0]}&printType=books&maxResults=40&startIndex=${index}`
@@ -211,7 +215,7 @@ My app was working perfectly when everything was hosted locally, and then everyt
 
 ## Known Issues
 ### Recommendation engine
-Right now the functionality of the recommendation engine isn’t what I wanted it to be. It’s going stricly on the first genre that the user outputted. My next step is to tie in the goodreads API to then sort by goodreads rating which would be more accurate and have a more robust set of data.
+Right now the functionality of the recommendation engine isn’t what I wanted it to be. It’s going strictly on the first genre that the user outputted. My next step is to tie in the goodreads API to then sort by goodreads rating which would be more accurate and have a more robust set of data. I applied to more access to goodreads actual booklists which is a really neat funcitonality of user voted lists based on genres and sub-genres. I never heard back from them (pinging Amazon), but would love to delve into that method of API request.
 
 ## Future Releases
 * Value bar at the top for a goals per year of how many books to read
