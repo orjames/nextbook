@@ -64,28 +64,29 @@ Model	Schema	Relation
 
 
 ### Routes in use
-- METHOD	ROUTE
-- GET	  /auth/signup
-- GET	  /auth/login
-- POST  /auth/signup
-- POST	/auth/login
-- GET	  /auth/logout
-- GET   /favorite/index
-- POST  /favorites
-- DELETE /favorite
-- GET   /genres/index
-- POST /genres
-- DELETE /genres
-- GET /main/index
-- GET /mybooks/index
-- GET /mybooks/new
-- POST /mybooks
-- GET /mybooks/edit
-- PUT /mybooks
-- DELETE /mybooks
-- GET /search/new
-- GET /search/show
-- GET /
+| METHOD | ROUTE |
+|--------|-------|
+| GET	|   /auth/signup |
+| GET	|   /auth/login |
+| POST |  /auth/signup |
+| POST	| /auth/login |
+| GET	|   /auth/logout |
+| GET |   /favorite/index |
+| POST |  /favorites |
+| DELETE | /favorite |
+| GET |   /genres/index |
+| POST | /genres |
+| DELETE | /genres |
+| GET | /main/index |
+| GET | /mybooks/index |
+| GET | /mybooks/new |
+| POST | /mybooks |
+| GET | /mybooks/edit |
+| PUT | /mybooks |
+| DELETE | /mybooks |
+| GET | /search/new |
+| GET | /search/show |
+| GET | / |
 
 ### Authentication Boilerplate
 I started with an authentication boilerplate using Express authentication template, Passport + flash messages + encryption + custom middleware. Includes routes to log, in signup, and sign out.
