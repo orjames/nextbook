@@ -218,6 +218,9 @@ My app was working perfectly when everything was hosted locally, and then everyt
 Right now the functionality of the recommendation engine isn’t what I wanted it to be. It’s going strictly on the first genre that the user outputted. My next step is to tie in the goodreads API to then sort by goodreads rating which would be more accurate and have a more robust set of data. I applied to more access to goodreads actual booklists which is a really neat funcitonality of user voted lists based on genres and sub-genres. I never heard back from them (pinging Amazon), but would love to delve into that method of API request.
 
 ## Future Releases
+* Further builds on recommendation engine, more personalized
+* Build user profiles with information of what books they like
+* Expand book descriptions, don't display full description from the start
 * Value bar at the top for a goals per year of how many books to read
 * Page of all users and the books they’ve read to make a community
 * User profile to update email/password
