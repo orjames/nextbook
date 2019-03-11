@@ -61,11 +61,7 @@ for more information on packages used, please review package.json
 
 ### Models and Relations
 Model	Schema	Relation
-user	name:string, email:string, password:string	hasMany map
-map	location:string, lat:float, lng:float, radius:integer, title:string, description:text, public:boolean, userId:integer	belongsTo user belongsToMany bike
-bike	model:string, lat:float, lng:float, url:string, bikeIndexId:integer	belongsToMany map
-mapsBikes	mapId:integer, bikeId:integer	join table for map/bike M:M association
-ER Diagram
+
 
 ### Routes in use
 - METHOD	ROUTE
