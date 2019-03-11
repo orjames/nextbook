@@ -225,6 +225,7 @@ The navbar at the bottom was blocking the funcitonality of the app. I adjusted a
 A funny little side not was that safari identified the isbns as phone numbers
 
   ![img](./public/img/testingSecond.jpg | width=100)
+  <img src='./public/img/testingSecond.jpg' width='50%'>
 
 ## Known Issues
 ### Recommendation engine
