@@ -1,4 +1,5 @@
 # nextbook
+nextbook is a full CRUD app used to recommend the next book for a user. Users can pick genres of interest, as well as rate and review books they've already read. This will then populate their recommended books. From there users can add books to their favorites.
 
 ## Getting Started
 
@@ -22,10 +23,10 @@ View the project Trello Board [here](https://trello.com/b/YBlxEvyb/nextbook)
 
 ### ERD (Entity Relationship Diagram)
 My first Draft – I ended up over-complicating some portions of this (the book didn’t need many genre’s since only the user would be using them in the recommendation engine, also I could combine rating and review).
-  [img](./public/img/firstDraft.png)
+  ![img](./public/img/firstDraft.png)
 Believe it or not there were quite a few more revisions to my tables, as evidenced by my migrations folder. I won’t share those here for the sake of brevity.
 The final draft of my ERD is shown here:
-  [img](./public/img/secondDraft.png)
+  ![img](./public/img/secondDraft.png)
 
 [ERD Diagram](https://www.draw.io/?client=1&page=1#W28ebc226bc8a6f7c%2F28EBC226BC8A6F7C!14634)
 
@@ -207,8 +208,6 @@ let books = _.compact(_.flatten(results.map( r => r.value)))
       }
       books.sort(compare);
 ```
-
-
 
 ## Known Issues
 ### Recommendation engine
