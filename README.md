@@ -6,12 +6,12 @@
 To create a full-stack Node application using Express that pulls information about a user’s books, allows them to rate and review their books, and recommends the user to similar books. 
 
 ### Goals include:
-[x] Including 2+ models
-[x] Include sign up/log in functionality, with hashed passwords & an authorization flow
-[x] Incorporate at least one API
-[x] Have complete RESTful routes
-[x] Utilize an ORM (Sequelize) to create a database table structure and interact with your relationally-stored data
-[x] Include wireframes that you designed during the planning process.
+* [x] Including 2+ models
+* [x] Include sign up/log in functionality, with hashed passwords & an authorization flow
+* [x] Incorporate at least one API
+* [x] Have complete RESTful routes
+* [x] Utilize an ORM (Sequelize) to create a database table structure and interact with your relationally-stored data
+* [x] Include wireframes that you designed during the planning process.
 
 ### Wireframes
 Initial wireframes and prototyping of Mobile and Desktop views can be found here: 
@@ -34,28 +34,28 @@ Google books API
 GoodReads API: (I ended up not using this API because it lacked search functionality, however, if given permission it does have a nice way of generating lists based on users preferences. Goodreads, unfortunately, never got back to me about gaining permission to access this portion of the API.
 
 ### Resources and Libraries used
-•	async: "^2.6.2",
-•	bcrypt: ^3.0.4,
-•	bootstrap-select: ^1.13.6,
-•	connect-flash: ^0.1.1,
-•	connect-session-sequelize: ^6.0.0,
-•	dotenv: ^6.2.0,
-•	ejs: ^2.6.1,
-•	express: ^4.16.4,
-•	express-ejs-layouts: ^2.5.0,
-•	express-session: ^1.15.6,
-•	helmet: ^3.15.1,
-•	lodash: ^4.17.11,
-•	method-override: ^3.0.0,
-•	morgan: ^1.9.1,
-•	passport: ^0.4.0,
-•	passport-local: ^1.0.0,
-•	pg: ^7.8.1,
-•	request: ^2.88.0,
-•	sequelize: ^4.42.1,
-•	sequelize-cli: ^5.4.0,
-•	xmldom: ^0.1.27,
-•	xmltojson: ^1.3.5NodeJS
+*	async: "^2.6.2",
+*	bcrypt: ^3.0.4,
+*	bootstrap-select: ^1.13.6,
+*	connect-flash: ^0.1.1,
+*	connect-session-sequelize: ^6.0.0,
+*	dotenv: ^6.2.0,
+*	ejs: ^2.6.1,
+*	express: ^4.16.4,
+*	express-ejs-layouts: ^2.5.0,
+*	express-session: ^1.15.6,
+*	helmet: ^3.15.1,
+*	lodash: ^4.17.11,
+*	method-override: ^3.0.0,
+*	morgan: ^1.9.1,
+*	passport: ^0.4.0,
+*	passport-local: ^1.0.0,
+*	pg: ^7.8.1,
+*	request: ^2.88.0,
+*	sequelize: ^4.42.1,
+*	sequelize-cli: ^5.4.0,
+*	xmldom: ^0.1.27,
+*	xmltojson: ^1.3.5NodeJS
 
 for more information on packages used, please review package.json
 
@@ -68,24 +68,29 @@ mapsBikes	mapId:integer, bikeId:integer	join table for map/bike M:M association
 ER Diagram
 
 ### Routes in use
-METHOD	ROUTE
-GET	  /auth/signup
-GET	  /auth/login
-POST  /auth/signup
-POST	/auth/login
-GET	  /auth/logout
-GET   /favorite/index
-POST  /favorites
-DELETE /favorite
-GET	  /
-GET	  /start/new
-POST	/start
-GET	/search
-POST	/search
-GET	/maps/:id
-GET	/maps/:id/edit
-PUT	/maps/:id
-DELETE	/maps/:id
+- METHOD	ROUTE
+- GET	  /auth/signup
+- GET	  /auth/login
+- POST  /auth/signup
+- POST	/auth/login
+- GET	  /auth/logout
+- GET   /favorite/index
+- POST  /favorites
+- DELETE /favorite
+- GET   /genres/index
+- POST /genres
+- DELETE /genres
+- GET /main/index
+- GET /mybooks/index
+- GET /mybooks/new
+- POST /mybooks
+- GET /mybooks/edit
+- PUT /mybooks
+- DELETE /mybooks
+- GET /search/new
+- GET /search/show
+- GET /
+
 
 ### Authentication Boilerplate
 I started with an authentication boilerplate using Express authentication template, Passport + flash messages + encryption + custom middleware. Includes routes to log, in signup, and sign out.
@@ -210,9 +215,9 @@ let books = _.compact(_.flatten(results.map( r => r.value)))
 Right now the functionality of the recommendation engine isn’t what I wanted it to be. It’s going stricly on the first genre that the user outputted. My next step is to tie in the goodreads API to then sort by goodreads rating which would be more accurate and have a more robust set of data.
 
 ## Future Releases
-*Value bar at the top for a goals per year of how many books to read
-*Page of all users and the books they’ve read to make a community
-*User profile to update email/password
+* Value bar at the top for a goals per year of how many books to read
+* Page of all users and the books they’ve read to make a community
+* User profile to update email/password
 
 @sixhops && @msShull for guidance
 nextbook – find your nextbook!

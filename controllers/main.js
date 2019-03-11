@@ -21,11 +21,6 @@ const goodreadsKey = process.env.GOODREADS_KEY;
   var at = require('lodash/at');
   var curryN = require('lodash/fp/curryN');
 
-// // GET /main/index takes you to main page of app calls isLoggedIn middleware
-// router.get('/', isLoggedIn, function(req, res) {
-//   res.render('main/index')
-// })
-
 const async = require('async');
 let genres=[];
 let requestIndexes = [ 0, 40, 80, 120] // if more searches desired, add more numbers in this array, increments of 40
