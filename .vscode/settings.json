@@ -6,5 +6,19 @@
     "isbns",
     "mybooks",
     "url"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#cf3dcf",
+    "activityBar.foreground": "#e7e7e7",
+    "activityBar.inactiveForeground": "#e7e7e799",
+    "activityBarBadge.background": "#4d4d13",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "titleBar.activeBackground": "#cf3dcf",
+    "titleBar.inactiveBackground": "#cf3dcf99",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveForeground": "#e7e7e799",
+    "statusBar.background": "#cf3dcf",
+    "statusBarItem.hoverBackground": "#d966d9",
+    "statusBar.foreground": "#e7e7e7"
+  }
 }
