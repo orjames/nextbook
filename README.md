@@ -4,11 +4,10 @@ nextbook is a full CRUD app used to recommend the next book for a user. Users ca
 
 #### First, a look at the completed app Images
 
-<img src='./public/img/nextbook1.jpg' width='25%'>
-<img src='./public/img/nextbook2.jpg' width='25%'>
-<img src='./public/img/nextbook3.jpg' width='25%'>
-<img src='./public/img/nextbook4.jpg' width='25%'>
-<img src='./public/img/nextbook5.jpg' width='25%'>
+:-------------------------------------------------:|:--------------------------------------------------:
+<img src='./public/img/nextbook1.jpg' width='25%'> | <img src='./public/img/nextbook1.jpg' width='25%'>
+<img src='./public/img/nextbook2.jpg' width='25%'> | <img src='./public/img/nextbook3.jpg' width='25%'>
+<img src='./public/img/nextbook4.jpg' width='25%'> | <img src='./public/img/nextbook5.jpg' width='25%'>
 
 ## Getting Started
 
